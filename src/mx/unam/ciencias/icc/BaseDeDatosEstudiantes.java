@@ -10,7 +10,8 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
      * @return un estudiante en blanco.
      */
     @Override public Registro creaRegistro() {
-        // Aquí va su código.
+        Estudiante e = new Estudiante();
+	return e;
     }
 
     /**
@@ -28,6 +29,55 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
             throw new IllegalArgumentException("El campo debe ser " +
                                                "CampoEstudiante");
         CampoEstudiante c = (CampoEstudiante)campo;
-        // Aquí va su código.
+	Lista nueva = new Lista();
+	registros.Nodo n =this.getCabeza();
+	switch (c){
+	case NOMBRE:
+	    while(n!=null){
+		Estudiante e =(Estudiante)n.get();
+		String s = e.getNombre();
+		if(s.contains(texto)){
+		    nueva.agregaFinal(e);
+		}
+		n=n.getSiguiente();
+	    }
+	    return nueva;
+	    
+	case CUENTA:
+	    while(n!=null){
+		Estudiante e =(Estudiante)n.get();
+		Int i = e.getCuenta();
+		String s = i.toString();
+		if(s.contains(texto)){
+		    nueva.agregaFinal(e);
+		}
+		n=n.getSiguiente();
+	    }
+	    return nueva;
+
+	case PROMEDIO:
+	    while(n!=null){
+		Estudiante e =(Estudiante)n.get();
+		Double d = e.getCuenta();
+		String s = d.toString();
+		if(s.contains(texto)){
+		    nueva.agregaFinal(e);
+		}
+		n=n.getSiguiente();
+	    }
+	    return nueva;
+	   	     
+	case EDAD:
+	     while(n!=null){
+		Estudiante e =(Estudiante)n.get();
+		Int i = e.getCuenta();
+		String s = i.toString();
+		if(s.contains(texto)){
+		    nueva.agregaFinal(e);
+		}
+		n=n.getSiguiente();
+	    }
+	    
+	}
     }
 }
