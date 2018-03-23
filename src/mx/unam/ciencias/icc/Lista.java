@@ -33,7 +33,7 @@ public class Lista {
         public Nodo(Object elemento) {
             this.elemento=elemento;
 	    anterior=null;
-	    siguiente=null
+	    siguiente=null;
         }
 
         /**
@@ -96,7 +96,10 @@ public class Lista {
      * @throws IllegalArgumentException si <code>elemento</code> es
      *         <code>null</code>.
      */
-    public void agregaFinal(Object elemento) {
+    public void agregaFinal(Object elemento) throws IllegalArgumentException{
+	if(elemento==null){
+	    throw new IllegalArgumentException();
+	}
 	Nodo nodo= new Nodo(elemento);
 	if(this.esVacia()){
 	    cabeza=nodo;
@@ -116,10 +119,14 @@ public class Lista {
      * @throws IllegalArgumentException si <code>elemento</code> es
      *         <code>null</code>.
      */
-    public void agregaInicio(Object elemento) {
+    public void agregaInicio(Object elemento) throws IllegalArgumentException{
+	if(elemento==null){
+	    throw new IllegalArgumentException();
+	}
         Nodo nodo= new Nodo(elemento);
 	if(this.esVacia()){
 	    cabeza=nodo;
+
 	    rabo=cabeza;
 	}else{
 	    cabeza.anterior=nodo;
@@ -166,9 +173,9 @@ public class Lista {
      * @throws IllegalArgumentException si <code>elemento</code> es
      *         <code>null</code>.
      */
-    public void inserta throws IllegalArgumentException (int i, Object elemento) {
+    public void inserta(int i, Object elemento)throws IllegalArgumentException {
         if(elemento==null){
-	    throw new IllegalArgumentException exc;
+	    throw new IllegalArgumentException();
 	}else if(i<=0){
 	    this.agregaInicio(elemento);
 	    return;
@@ -244,9 +251,9 @@ public class Lista {
      * @return el primer elemento de la lista antes de eliminarlo.
      * @throws NoSuchElementException si la lista es vacía.
      */
-    public Object eliminaPrimero throws NoSuchElementException() {
+    public Object eliminaPrimero() throws NoSuchElementException{
          if(this.esVacia()){
-	     throw new NoSuchElementException exc;
+	     throw new NoSuchElementException();
 	}else if(longitud ==1){
 	    Object primero = cabeza.elemento;
 	    cabeza=null;
@@ -267,9 +274,9 @@ public class Lista {
      * @return el último elemento de la lista antes de eliminarlo.
      * @throws NoSuchElementException si la lista es vacía.
      */
-    public Object eliminaUltimo throws NoSuchElementException() {
+    public Object eliminaUltimo() throws NoSuchElementException{
         if(this.esVacia()){
-	    throw new NoSuchElementException exc;
+	    throw new NoSuchElementException();
 	}else if(longitud == 1){
 	    Object ultimo = rabo.elemento;
 	    rabo = null;
@@ -360,9 +367,9 @@ public class Lista {
      * @return el primer elemento de la lista.
      * @throws NoSuchElementException si la lista es vacía.
      */
-    public Object getPrimero throws NoSuchElementException() {
+    public Object getPrimero() throws NoSuchElementException{
          if(this.esVacia() ){
-	     throw new NoSuchElementException exc;
+	     throw new NoSuchElementException();
 	}else{
 	    return(cabeza.elemento);
 	}
@@ -373,9 +380,9 @@ public class Lista {
      * @return el primer elemento de la lista.
      * @throws NoSuchElementException si la lista es vacía.
      */
-    public Object getUltimo throws NoSuchElementException() {
+    public Object getUltimo() throws NoSuchElementException{
          if(this.esVacia() ){
-	     throw new NoSuchElementException exc;
+	     throw new NoSuchElementException();
 	}else{
 	    return(rabo.elemento);
 	}
@@ -388,10 +395,10 @@ public class Lista {
      * @throws ExcepcionIndiceInvalido si <em>i</em> es menor que cero o mayor o
      *         igual que el número de elementos en la lista.
      */
-    public Object get throws ExceptionIndiceInvalido(int i) {
+    public Object get(int i) throws ExcepcionIndiceInvalido{
        Nodo indice = this.indiceNodo1(i,cabeza);
 	if(indice==null){
-	    throw new ExceptionIndiceInvalido exc;
+	    throw new ExcepcionIndiceInvalido();
 	}else{
 	    return indice.elemento;
 	}

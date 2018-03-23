@@ -116,11 +116,11 @@ public class Estudiante implements Registro {
         if (!(o instanceof Estudiante))
             return false;
         Estudiante e = (Estudiante)o;
-        if((this.nombre==e.nombre) &&
-	   (this.cuenta==e.cuenta)&&
-	   (this.promedio==e.promedio)&&
-	   (this.edad==e.edad)){
-	    return true;
+        if((this.nombre.equals(e.nombre)    )&&
+	   (this.cuenta==e.cuenta           )&&
+	   (this.promedio==e.promedio       )&&
+	   (this.edad==e.edad              )){
+	   return true;
 	}return false;
     }
 
@@ -157,13 +157,13 @@ public class Estudiante implements Registro {
      *         recibida no contiene a un estudiante.
      */
     @Override public boolean carga(BufferedReader in) throws IOException {
-        String linea = in.readline(); //copiamos en linea la primera linea de in
+        String linea = in.readLine(); //copiamos en linea la primera linea de in
 	if(linea==null)
 	    return false;
 	linea = linea.trim(); //quitamos los posibles espacios en blanco
-	if(linea.equals("")
+	if(linea.equals(""))
 	   return false;
-	   string[] p=linea.split("\t");
+	   String[] p=linea.split("\t");
 	   if(p.length != 4)
 	       throw new IOException("El archivo es invalido");
 	   nombre =p[0];
@@ -175,8 +175,7 @@ public class Estudiante implements Registro {
 	   }catch(NumberFormatException nfe){
 	       throw new IOException("Registro Invalido");
 	   }
-	     
-	   
+	   return true; 
     }
 }
 

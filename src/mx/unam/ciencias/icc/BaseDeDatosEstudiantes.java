@@ -10,7 +10,7 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
      * @return un estudiante en blanco.
      */
     @Override public Registro creaRegistro() {
-        Estudiante e = new Estudiante();
+        Estudiante e = new Estudiante(null,0,0,0);
 	return e;
     }
 
@@ -24,13 +24,17 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
      * @throws IllegalArgumentException si el campo no es instancia de
      *         {@link CampoEstudiante}.
      */
-    @Override public Lista buscaRegistros(Enum campo, String texto) {
-        if (!(campo instanceof CampoEstudiante))
+    @Override public Lista buscaRegistros(Enum campo, String texto) throws IllegalArgumentException{
+        if (!(campo instanceof CampoEstudiante)){
             throw new IllegalArgumentException("El campo debe ser " +
                                                "CampoEstudiante");
+	}
         CampoEstudiante c = (CampoEstudiante)campo;
 	Lista nueva = new Lista();
-	registros.Nodo n =this.getCabeza();
+	Lista.Nodo n =this.registros.getCabeza();
+	if(texto==null){
+	    return nueva;
+	}
 	switch (c){
 	case NOMBRE:
 	    while(n!=null){
@@ -46,8 +50,8 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	case CUENTA:
 	    while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		Int i = e.getCuenta();
-		String s = i.toString();
+		int i = e.getCuenta();
+		String s = String.valueOf(i);
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
 		}
@@ -58,7 +62,7 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	case PROMEDIO:
 	    while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		Double d = e.getCuenta();
+		Double d = e.getPromedio();
 		String s = d.toString();
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
@@ -67,17 +71,19 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	    }
 	    return nueva;
 	   	     
-	case EDAD:
+	default:
 	     while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		Int i = e.getCuenta();
-		String s = i.toString();
+		int i = e.getEdad();
+		String s = String.valueOf(i);
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
 		}
 		n=n.getSiguiente();
-	    }
+	     }
+	     return nueva;
 	    
 	}
+	
     }
 }

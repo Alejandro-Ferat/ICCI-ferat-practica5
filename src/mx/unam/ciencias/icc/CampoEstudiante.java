@@ -20,15 +20,17 @@ public enum CampoEstudiante {
      * @return una representación en cadena del campo.
      */
     @Override public String toString() {
-        swich (this){
+	
+        switch (this){
 	case NOMBRE:
 	    return "Nombre";	    
 	case CUENTA:
 	    return "# Cuenta";
 	case PROMEDIO:
 	    return "Promedio";
-	case EDAD:
+	default:
 	    return "Edad";
 	}
+	
     }
 }

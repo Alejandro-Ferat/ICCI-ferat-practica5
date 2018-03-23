@@ -119,10 +119,10 @@ public class Matriz2x2 {
      * @return La inversa de la matriz de 2×2.
      * @throws IllegalStateException si la matriz no es invertible.
      */
-    public Matriz2x2 inversa throws IllegalStateException() {
+    public Matriz2x2 inversa() throws IllegalStateException{
 	double determinante =this.determinante();
 	if(determinante==0){
-	    throw new IllegalStateExption exc("La matriz no es invertible");
+	    throw new IllegalStateException();
 	}else{
 	    Matriz2x2 inversa =new Matriz2x2(d,-b,-c,a);
 	    return inversa.multiplica(1/determinante);

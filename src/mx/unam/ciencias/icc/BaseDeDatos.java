@@ -29,7 +29,7 @@ public abstract class BaseDeDatos {
      * @return el número de registros en la base de datos.
      */
     public int getNumRegistros() {
-        return this.getLongitud();
+        return registros.getLongitud();
     }
 
     /**
@@ -38,7 +38,7 @@ public abstract class BaseDeDatos {
      * @return una lista con los registros en la base de datos.
      */
     public Lista getRegistros() {
-        return this.copia();
+        return registros.copia();
     }
 
     /**
@@ -46,7 +46,7 @@ public abstract class BaseDeDatos {
      * @param registro el registro que hay que agregar a la base de datos.
      */
     public void agregaRegistro(Registro registro) {
-        this.agregaFinal(registro);
+        registros.agregaFinal(registro);
     }
 
     /**
@@ -54,7 +54,7 @@ public abstract class BaseDeDatos {
      * @param registro el registro que hay que eliminar de la base de datos.
      */
     public void eliminaRegistro(Registro registro) {
-        this.elimina(registro);
+        registros.elimina(registro);
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class BaseDeDatos {
     public void guarda(BufferedWriter out) throws IOException {
         Lista.Nodo n= registros.getCabeza();
 	while(n != null){
-	    registros r =(registros) n.get();
+	    Registro r =(Registro) n.get();
 	    r.guarda(out);
 	    n=n.getSiguiente();
 	}
