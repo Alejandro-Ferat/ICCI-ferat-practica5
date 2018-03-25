@@ -31,10 +31,16 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	}
         CampoEstudiante c = (CampoEstudiante)campo;
 	Lista nueva = new Lista();
-	Lista.Nodo n =this.registros.getCabeza();
+	if(this.registros.esVacia()){
+	    return nueva;
+	}
 	if(texto==null){
 	    return nueva;
 	}
+	if(texto==""){
+	    return nueva;
+	}
+	Lista.Nodo n=this.registros.getCabeza();
 	switch (c){
 	case NOMBRE:
 	    while(n!=null){
@@ -50,8 +56,7 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	case CUENTA:
 	    while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		int i = e.getCuenta();
-		String s = String.valueOf(i);
+		String s = String.valueOf(e.getCuenta());
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
 		}
@@ -62,8 +67,7 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	case PROMEDIO:
 	    while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		Double d = e.getPromedio();
-		String s = d.toString();
+		String s = String.format("%2.2f", e.getPromedio());
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
 		}
@@ -74,14 +78,13 @@ public class BaseDeDatosEstudiantes extends BaseDeDatos {
 	default:
 	     while(n!=null){
 		Estudiante e =(Estudiante)n.get();
-		int i = e.getEdad();
-		String s = String.valueOf(i);
+		String s = String.valueOf(e.getEdad());
 		if(s.contains(texto)){
 		    nueva.agregaFinal(e);
 		}
 		n=n.getSiguiente();
-	     }
-	     return nueva;
+	    }
+	    return nueva;
 	    
 	}
 	
